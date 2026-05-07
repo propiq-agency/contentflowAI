@@ -618,8 +618,7 @@ Make captions and scripts in ${language}. Tone: ${tone}. Hashtags without # symb
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify({
         contents: [{parts: [{text: prompt}]}],
-        generationConfig: {maxOutputTokens: 4000, temperature: 0.9}
-      })
+        generationConfig: {maxOutputTokens: 8192, temperature: 0.9}      })
     });
     const data = await response.json();
     clearInterval(stepTimer);
