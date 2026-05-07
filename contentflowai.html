@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Instagram Content Generator | AI-Powered Fashion Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --pink: #e8455a;
+  --pink-light: #fce8eb;
+  --pink-mid: #f07080;
+  --navy: #1a1f36;
+  --gray: #6b7280;
+  --light-gray: #f8f9fa;
+  --border: #e5e7eb;
+  --white: #ffffff;
+}
+body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); line-height: 1.6; }
+
+/* NAV */
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 68px; border-bottom: 1px solid var(--border);
+  background: white; position: sticky; top: 0; z-index: 100;
+}
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); }
+.logo-icon {
+  width: 36px; height: 36px; background: var(--pink); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 16px; font-weight: 700;
+}
+.logo-text { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--gray); font-size: 15px; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--navy); }
+
+/* HERO */
+.hero {
+  text-align: center; padding: 90px 24px 80px; background: white;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(232,69,90,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--pink-light); color: var(--pink);
+  font-size: 13px; font-weight: 600; padding: 8px 18px;
+  border-radius: 100px; margin-bottom: 28px;
+  border: 1px solid rgba(232,69,90,0.18);
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 6vw, 72px); font-weight: 800;
+  line-height: 1.08; color: var(--navy);
+  max-width: 800px; margin: 0 auto 24px; letter-spacing: -1px;
+}
+.hero h1 .highlight { color: var(--pink); }
+.hero p {
+  font-size: 18px; color: var(--gray);
+  max-width: 560px; margin: 0 auto 44px; font-weight: 400; line-height: 1.7;
+}
+.hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--pink); color: white; padding: 16px 32px;
+  border-radius: 10px; font-size: 15px; font-weight: 600; border: none;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(232,69,90,0.3);
+}
+.btn-primary:hover { background: #d63a4e; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(232,69,90,0.4); }
+.btn-secondary {
+  background: transparent; color: var(--navy); padding: 16px 28px;
+  border-radius: 10px; font-size: 15px; font-weight: 500;
+  border: 1.5px solid var(--border); cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-secondary:hover { border-color: var(--navy); background: var(--light-gray); }
+
+/* FEATURES */
+.section { padding: 90px 48px; }
+.section-label {
+  text-align: center; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--pink); margin-bottom: 14px;
+}
+.section-title {
+  text-align: center; font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 42px); font-weight: 800;
+  color: var(--navy); margin-bottom: 16px; letter-spacing: -0.5px;
+}
+.section-sub {
+  text-align: center; font-size: 16px; color: var(--gray);
+  max-width: 520px; margin: 0 auto 60px; line-height: 1.7;
+}
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; max-width: 1060px; margin: 0 auto;
+}
+@media (max-width: 900px) { .features-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 540px) { .features-grid { grid-template-columns: 1fr; } }
+.feature-card {
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 18px; padding: 32px 28px;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.feature-card:hover {
+  border-color: var(--pink);
+  box-shadow: 0 8px 40px rgba(232,69,90,0.1);
+  transform: translateY(-3px);
+}
+.feature-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--pink-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; margin-bottom: 20px;
+}
+.feature-card h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.feature-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+/* GENERATOR */
+.generator-section { padding: 90px 24px; background: var(--light-gray); }
+.generator-wrapper { max-width: 860px; margin: 0 auto; }
+.generator-card {
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 4px 40px rgba(0,0,0,0.07);
+}
+.gen-form-body { padding: 36px 40px; }
+@media (max-width: 580px) { .gen-form-body { padding: 24px 20px; } }
+.form-section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gray);
+  margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.form-row.single { grid-template-columns: 1fr; }
+@media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+input[type="text"], textarea, select {
+  background: var(--light-gray); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-family: 'Inter', sans-serif; font-size: 14px; color: var(--navy);
+  outline: none; width: 100%; transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+input[type="text"]::placeholder, textarea::placeholder { color: #b0b7c3; }
+input[type="text"]:focus, textarea:focus, select:focus {
+  border-color: var(--pink); background: white;
+  box-shadow: 0 0 0 3px rgba(232,69,90,0.1);
+}
+textarea { min-height: 90px; resize: vertical; }
+select {
+  appearance: none; cursor: pointer; padding-right: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  background-color: var(--light-gray);
+}
+.focus-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.focus-btn {
+  padding: 9px 20px; border-radius: 100px;
+  font-size: 13px; font-weight: 600; border: none;
+  background: var(--navy); color: white;
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: opacity 0.15s, background 0.15s;
+}
+.focus-btn:hover { opacity: 0.85; }
+.focus-btn.off { background: #e5e7eb; color: var(--gray); }
+.btn-generate-main {
+  width: 100%; padding: 20px; background: var(--pink);
+  color: white; border: none; border-radius: 0 0 18px 18px;
+  font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  gap: 10px; transition: background 0.2s; letter-spacing: 0.01em;
+}
+.btn-generate-main:hover { background: #d63a4e; }
+.btn-generate-main:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* LOADING */
+.loading-overlay { display: none; padding: 56px 40px; text-align: center; }
+.loading-overlay.active { display: block; }
+.loading-spinner {
+  width: 44px; height: 44px; border: 3px solid var(--pink-light);
+  border-top-color: var(--pink); border-radius: 50%;
+  animation: spin 0.8s linear infinite; margin: 0 auto 20px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-title { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.loading-sub { font-size: 14px; color: var(--gray); margin-bottom: 24px; }
+.progress-bar-track {
+  height: 4px; background: var(--pink-light); border-radius: 4px;
+  max-width: 300px; margin: 0 auto; overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%; background: var(--pink); border-radius: 4px;
+  width: 0%; transition: width 0.5s ease;
+}
+.progress-steps-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 20px; }
+.pstep {
+  font-size: 12px; padding: 5px 14px; border-radius: 100px;
+  background: var(--light-gray); color: var(--gray); font-weight: 500; transition: all 0.3s;
+}
+.pstep.active { background: var(--pink); color: white; }
+.pstep.done { background: var(--pink-light); color: var(--pink); }
+
+/* OUTPUT */
+.output-section { display: none; padding: 60px 24px; max-width: 1020px; margin: 0 auto; }
+.output-section.visible { display: block; }
+.output-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 32px; flex-wrap: wrap; gap: 16px;
+}
+.output-heading {
+  font-family: 'Playfair Display', serif; font-size: 32px;
+  font-weight: 800; color: var(--navy); letter-spacing: -0.5px;
+}
+.output-meta { font-size: 14px; color: var(--gray); margin-top: 4px; }
+.output-actions { display: flex; gap: 10px; }
+.btn-sm {
+  padding: 9px 18px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  display: flex; align-items: center; gap: 6px; transition: all 0.15s;
+}
+.btn-sm-outline { border: 1.5px solid var(--border); background: white; color: var(--gray); }
+.btn-sm-outline:hover { border-color: var(--navy); color: var(--navy); }
+.btn-sm-dark { border: none; background: var(--navy); color: white; }
+.btn-sm-dark:hover { background: #2d3554; }
+
+/* Day tabs */
+.day-tabs { display: grid; grid-template-columns: repeat(7,1fr); gap: 8px; margin-bottom: 28px; }
+@media (max-width: 640px) { .day-tabs { grid-template-columns: repeat(4,1fr); } }
+.day-tab {
+  padding: 14px 6px; background: white; border: 1.5px solid var(--border);
+  border-radius: 14px; text-align: center; cursor: pointer;
+  font-family: 'Inter', sans-serif; transition: all 0.2s;
+}
+.day-tab:hover { border-color: var(--pink); background: var(--pink-light); }
+.day-tab.active { background: var(--navy); border-color: var(--navy); color: white; }
+.day-tab .tab-icon { font-size: 20px; margin-bottom: 4px; }
+.day-tab .tab-day {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; opacity: 0.5; margin-bottom: 2px;
+}
+.day-tab .tab-type { font-size: 11px; font-weight: 600; line-height: 1.3; }
+
+/* Panels */
+.day-panel { display: none; }
+.day-panel.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .content-grid { grid-template-columns: 1fr; } }
+.out-card {
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 16px; padding: 24px; position: relative;
+}
+.out-card.span-full { grid-column: 1 / -1; }
+.out-card-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--pink); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.out-card h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+.out-card-body { font-size: 14px; color: #374151; line-height: 1.75; white-space: pre-wrap; }
+.script-block {
+  background: var(--navy); border-radius: 10px;
+  padding: 14px 18px; margin-bottom: 8px;
+}
+.sb-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--pink-mid); margin-bottom: 5px;
+}
+.sb-text { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+.meta-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.meta-badge {
+  font-size: 12px; font-weight: 500; padding: 5px 12px;
+  border-radius: 100px; background: var(--light-gray);
+  color: var(--gray); border: 1px solid var(--border);
+}
+.hashtags-wrap { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+.htag {
+  font-size: 12px; font-weight: 500; padding: 5px 12px;
+  background: var(--pink-light); color: var(--pink);
+  border-radius: 100px; cursor: pointer;
+  transition: all 0.15s; user-select: none;
+}
+.htag:hover { background: var(--pink); color: white; }
+.copy-chip {
+  position: absolute; top: 16px; right: 16px;
+  width: 30px; height: 30px; border: 1.5px solid var(--border);
+  border-radius: 7px; background: white; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--gray); transition: all 0.15s;
+}
+.copy-chip:hover { border-color: var(--pink); color: var(--pink); background: var(--pink-light); }
+
+/* TESTIMONIALS */
+.testimonials-section { padding: 90px 48px; background: var(--light-gray); }
+.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1020px; margin: 0 auto; }
+@media (max-width: 800px) { .testi-grid { grid-template-columns: 1fr; } }
+.testi-card {
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 16px; padding: 28px;
+}
+.testi-stars { color: #f59e0b; font-size: 15px; margin-bottom: 12px; }
+.testi-text { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 18px; font-style: italic; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 15px; color: white;
+}
+.testi-name { font-size: 14px; font-weight: 700; color: var(--navy); }
+.testi-handle { font-size: 12px; color: var(--gray); }
+
+/* FOOTER */
+footer {
+  text-align: center; padding: 40px 24px;
+  border-top: 1px solid var(--border); font-size: 13px; color: var(--gray);
+}
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 28px; right: 28px;
+  background: var(--navy); color: white; padding: 12px 22px;
+  border-radius: 10px; font-size: 13px; font-weight: 600;
+  z-index: 999; transform: translateY(60px); opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); pointer-events: none;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">✦</div>
+    <span class="logo-text">ContentFlow</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#generator">Generator</a></li>
+
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge">✦ AI-Powered Content Generator</div>
+  <h1>Create Instagram Content<br>That <span class="highlight">Converts</span></h1>
+  <p>Generate a full week's content strategy in seconds. Viral ideas, engagement scripts, optimized captions, and a ready-to-use calendar — all tailored for your fashion brand.</p>
+  <div class="hero-btns">
+    <a href="#generator" class="btn-primary">Generate Now →</a>
+    <a href="#features" class="btn-secondary">See Features</a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-label">What You Get</div>
+  <div class="section-title">Everything You Need to<br>Grow on Instagram</div>
+  <div class="section-sub">One click generates a full week of content — from scripts to hashtags, tailored to your fashion brand.</div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <h3>Weekly Calendar</h3>
+      <p>Get a ready-to-execute 7-day posting schedule with content types, themes, and optimal posting times.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💡</div>
+      <h3>Viral Ideas</h3>
+      <p>AI-generated content concepts optimized for the 2025 Instagram algorithm and your specific audience.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎬</div>
+      <h3>Reel Scripts</h3>
+      <p>Ready-to-film scripts with hooks, problem statements, value propositions, and CTAs that drive action.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✍️</div>
+      <h3>Captions + Hashtags</h3>
+      <p>Engaging captions in French or English with strategically selected hashtags for maximum reach.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Strategy Analysis</h3>
+      <p>Data-backed insights and recommendations based on your previous week's performance.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Content Pillars</h3>
+      <p>Define your content pillars to maintain consistency and build a recognizable brand presence.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GENERATOR -->
+<section class="generator-section" id="generator">
+  <div class="generator-wrapper">
+    <div class="section-label" style="text-align:center;margin-bottom:10px">AI Generator</div>
+    <div class="section-title" style="text-align:center;margin-bottom:8px;font-size:clamp(24px,3.5vw,36px)">Generate Your Weekly Content</div>
+    <div class="section-sub" style="margin-bottom:32px">Fill in your details and get a complete 7-day Instagram content plan in seconds.</div>
+
+    <div class="generator-card">
+      <div class="gen-form-body" id="formBody">
+
+        <div class="form-section-label">SHOP / NICHE</div>
+        <div class="form-row" style="margin-bottom:22px">
+          <div class="form-group">
+            <input type="text" id="shopNiche" placeholder="Clothes shop · Girls fashion" value="Clothes shop · Girls fashion">
+          </div>
+          <div class="form-group">
+            <input type="text" id="targetAudience" placeholder="Women 18-30, Morocco" value="Women 18-30, Morocco">
+          </div>
+        </div>
+
+        <div class="form-section-label">WEEK THEME / FOCUS</div>
+        <div class="form-row single" style="margin-bottom:22px">
+          <input type="text" id="weekTheme" placeholder="e.g., summer collection, Eid looks, back to school...">
+        </div>
+
+        <div class="form-section-label">LAST WEEK PERFORMANCE (OPTIONAL)</div>
+        <div class="form-row single" style="margin-bottom:22px">
+          <textarea id="lastWeek" placeholder="e.g., Reel about jeans got 10k views, story poll had low engagement..."></textarea>
+        </div>
+
+        <div class="form-section-label">CONTENT FOCUS THIS WEEK</div>
+        <div class="focus-row" id="focusRow">
+          <button class="focus-btn" data-focus="Content ideas" onclick="toggleFocus(this)">Content ideas</button>
+          <button class="focus-btn" data-focus="Weekly calendar" onclick="toggleFocus(this)">Weekly calendar</button>
+          <button class="focus-btn" data-focus="Captions" onclick="toggleFocus(this)">Captions</button>
+          <button class="focus-btn" data-focus="Scripts" onclick="toggleFocus(this)">Scripts</button>
+          <button class="focus-btn" data-focus="Analysis" onclick="toggleFocus(this)">Analysis</button>
+        </div>
+
+        <div style="margin-top:22px">
+          <div class="form-section-label" style="margin-bottom:12px">OPTIONS</div>
+          <div class="form-row">
+            <div class="form-group">
+              <select id="language">
+                <option value="English">English</option>
+                <option value="French">French</option>
+                <option value="Arabic / Darija">Arabic / Darija</option>
+                <option value="English with French phrases">English + French Mix</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select id="tone">
+                <option value="elegant and aspirational">Elegant & Aspirational</option>
+                <option value="fun and playful">Fun & Playful</option>
+                <option value="warm and relatable">Warm & Relatable</option>
+                <option value="bold and confident">Bold & Confident</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-title">Generating your content plan...</div>
+        <div class="loading-sub" id="loadingSubText">Analyzing your niche and audience</div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-steps-list">
+          <span class="pstep" id="ps1">📅 Planning</span>
+          <span class="pstep" id="ps2">💡 Ideas</span>
+          <span class="pstep" id="ps3">✍️ Scripts</span>
+          <span class="pstep" id="ps4">📝 Captions</span>
+          <span class="pstep" id="ps5">🚀 Done</span>
+        </div>
+      </div>
+
+      <button class="btn-generate-main" id="genBtn" onclick="generateContent()">
+        Generate This Week's Report ✦
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- OUTPUT -->
+<div class="output-section" id="outputSection">
+  <div class="output-top">
+    <div>
+      <div class="output-heading" id="outTitle">Your Weekly Content Plan</div>
+      <div class="output-meta" id="outMeta">7 days · ready to post</div>
+    </div>
+    <div class="output-actions">
+      <button class="btn-sm btn-sm-outline" onclick="copyAll()">⊕ Copy All</button>
+      <button class="btn-sm btn-sm-dark" onclick="generateContent()">↻ Regenerate</button>
+    </div>
+  </div>
+  <div class="day-tabs" id="dayTabs"></div>
+  <div id="dayPanels"></div>
+</div>
+
+
+
+<footer>© 2025 ContentFlow · Powered by Gemini AI · Built for Fashion Creators</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DAYS_META = [
+  {name:'Mon',icon:'🔥',type:'New Drop'},
+  {name:'Tue',icon:'💬',type:'Engage'},
+  {name:'Wed',icon:'✨',type:'Styling'},
+  {name:'Thu',icon:'🌟',type:'Social Proof'},
+  {name:'Fri',icon:'🎬',type:'Reel Ad'},
+  {name:'Sat',icon:'⚡',type:'Flash Sale'},
+  {name:'Sun',icon:'🤍',type:'BTS'}
+];
+let activeFocus = ['Content ideas','Weekly calendar','Captions','Scripts','Analysis'];
+let generatedData = null;
+
+function toggleFocus(btn) {
+  const f = btn.dataset.focus;
+  if (activeFocus.includes(f)) { activeFocus = activeFocus.filter(x=>x!==f); btn.classList.add('off'); }
+  else { activeFocus.push(f); btn.classList.remove('off'); }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+function setProgress(pct, text, stepIdx) {
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('loadingSubText').textContent = text;
+  ['ps1','ps2','ps3','ps4','ps5'].forEach((id,i) => {
+    const el = document.getElementById(id);
+    if (i < stepIdx-1) el.className='pstep done';
+    else if (i === stepIdx-1) el.className='pstep active';
+    else el.className='pstep';
+  });
+}
+
+async function generateContent() {
+  const niche = document.getElementById('shopNiche').value.trim() || 'Clothes shop · Girls fashion';
+  const audience = document.getElementById('targetAudience').value.trim() || 'Women 18-30, Morocco';
+  const theme = document.getElementById('weekTheme').value.trim() || 'new collection';
+  const lastWeek = document.getElementById('lastWeek').value.trim();
+  const language = document.getElementById('language').value;
+  const tone = document.getElementById('tone').value;
+  const focusStr = activeFocus.join(', ');
+
+  const btn = document.getElementById('genBtn');
+  const formBody = document.getElementById('formBody');
+  const loadingOverlay = document.getElementById('loadingOverlay');
+
+  btn.disabled = true;
+  formBody.style.display = 'none';
+  loadingOverlay.classList.add('active');
+  document.getElementById('outputSection').classList.remove('visible');
+
+  const steps = [
+    [20,'Analyzing your niche and audience...',1],
+    [40,'Generating viral content ideas...',2],
+    [62,'Writing Reel scripts...',3],
+    [82,'Creating captions and hashtags...',4],
+    [96,'Finalizing your weekly plan...',5]
+  ];
+  let si = 0;
+  const stepTimer = setInterval(()=>{ if(si<steps.length){ setProgress(...steps[si]); si++; } }, 1800);
+
+  const lastWeekLine = lastWeek ? `Last week performance: ${lastWeek}.` : '';
+  const prompt = `You are an expert Instagram content strategist for a women's fashion brand.
+
+Shop/Niche: ${niche}
+Target audience: ${audience}
+Weekly theme: ${theme}
+${lastWeekLine}
+Content focus: ${focusStr}
+Language: ${language}
+Tone: ${tone}
+
+Create a complete 7-day Instagram content plan. Respond ONLY with valid JSON, no markdown, no preamble:
+{
+  "shopName": "...",
+  "weekTheme": "...",
+  "days": [
+    {
+      "day": "Monday",
+      "icon": "🔥",
+      "postType": "New Drop Reveal",
+      "script": {
+        "hook": "...",
+        "story": "...",
+        "value": "...",
+        "cta": "...",
+        "onScreen": "...",
+        "broll": "..."
+      },
+      "caption": "...",
+      "hashtags": ["fashion","ootd","newcollection"],
+      "postingTime": "18:00–20:00",
+      "musicVibe": "..."
+    }
+  ]
+}
+
+Make captions and scripts in ${language}. Tone: ${tone}. Hashtags without # symbol. Exactly 7 days. Specific to ${niche} for ${audience}.`;
+
+  try {
+    const GEMINI_KEY = "AIzaSyBj-tLVEb_PjND1CRIG3Ji5g8H5usa2uJU";
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({
+        contents: [{parts: [{text: prompt}]}],
+        generationConfig: {maxOutputTokens: 4000, temperature: 0.9}
+      })
+    });
+    const data = await response.json();
+    clearInterval(stepTimer);
+    setProgress(100, 'Your content plan is ready! ✦', 5);
+
+    const raw = data.candidates[0].content.parts.map(p=>p.text||'').join('');
+    const clean = raw.replace(/```json|```/g,'').trim();
+    const parsed = JSON.parse(clean);
+    generatedData = parsed;
+
+    setTimeout(()=>{
+      formBody.style.display = 'block';
+      loadingOverlay.classList.remove('active');
+      btn.disabled = false;
+      renderOutput(parsed);
+    }, 700);
+
+  } catch(err) {
+    clearInterval(stepTimer);
+    console.error(err);
+    formBody.style.display = 'block';
+    loadingOverlay.classList.remove('active');
+    btn.disabled = false;
+    showToast('Error generating content. Please try again.');
+  }
+}
+
+function renderOutput(data) {
+  const days = data.days || [];
+  document.getElementById('outTitle').textContent = (data.shopName||'Your Shop') + ' — Weekly Plan';
+  document.getElementById('outMeta').textContent = 'Theme: ' + (data.weekTheme||'—') + '  ·  7 days of ready-to-post content';
+
+  const tabsEl = document.getElementById('dayTabs');
+  const panelsEl = document.getElementById('dayPanels');
+  tabsEl.innerHTML = ''; panelsEl.innerHTML = '';
+
+  days.forEach((day, i) => {
+    const meta = DAYS_META[i] || {};
+    const tab = document.createElement('button');
+    tab.className = `day-tab${i===0?' active':''}`;
+    tab.innerHTML = `<div class="tab-icon">${day.icon||meta.icon||'✦'}</div><div class="tab-day">${(day.day||meta.name||'').slice(0,3).toUpperCase()}</div><div class="tab-type">${day.postType||meta.type}</div>`;
+    tab.onclick = ()=>switchDay(i);
+    tabsEl.appendChild(tab);
+
+    const s = day.script || {};
+    const hashtags = (day.hashtags||[]).map(h=>{const tag=h.startsWith('#')?h:'#'+h; return `<span class="htag" onclick="copyText('${tag}')">${tag}</span>`;}).join('');
+
+    const panel = document.createElement('div');
+    panel.className = `day-panel${i===0?' active':''}`;
+    panel.id = `panel-${i}`;
+    panel.innerHTML = `
+      <div class="content-grid">
+        <div class="out-card span-full">
+          <button class="copy-chip" onclick="copyCard(${i},'script')" title="Copy script">⊕</button>
+          <div class="out-card-tag">🎬 Reel Script</div>
+          <h3>${day.day} — ${day.postType}</h3>
+          <div class="script-block"><div class="sb-label">Hook (0–3s)</div><div class="sb-text">${s.hook||''}</div></div>
+          <div class="script-block"><div class="sb-label">Story / Problem (3–12s)</div><div class="sb-text">${s.story||''}</div></div>
+          <div class="script-block"><div class="sb-label">Value (12–40s)</div><div class="sb-text">${s.value||''}</div></div>
+          <div class="script-block"><div class="sb-label">CTA (last 5s)</div><div class="sb-text">${s.cta||''}</div></div>
+          <div class="meta-badges">
+            <span class="meta-badge">📱 On-screen: ${s.onScreen||''}</span>
+            <span class="meta-badge">🎥 B-roll: ${s.broll||''}</span>
+            ${day.musicVibe?`<span class="meta-badge">🎵 ${day.musicVibe}</span>`:''}
+          </div>
+        </div>
+        <div class="out-card">
+          <button class="copy-chip" onclick="copyCard(${i},'caption')" title="Copy caption">⊕</button>
+          <div class="out-card-tag">📝 Caption</div>
+          <div class="out-card-body">${(day.caption||'').replace(/\n/g,'<br>')}</div>
+          <div class="meta-badges"><span class="meta-badge">🕐 ${day.postingTime||'18:00–20:00'}</span></div>
+        </div>
+        <div class="out-card">
+          <button class="copy-chip" onclick="copyCard(${i},'hashtags')" title="Copy hashtags">⊕</button>
+          <div class="out-card-tag"># Hashtags</div>
+          <div class="out-card-body" style="font-size:12px;color:#9ca3af">Tap any hashtag to copy it instantly</div>
+          <div class="hashtags-wrap">${hashtags}</div>
+        </div>
+      </div>`;
+    panelsEl.appendChild(panel);
+  });
+
+  const out = document.getElementById('outputSection');
+  out.classList.add('visible');
+  setTimeout(()=>out.scrollIntoView({behavior:'smooth',block:'start'}), 100);
+}
+
+function switchDay(i) {
+  document.querySelectorAll('.day-tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));
+  document.querySelectorAll('.day-panel').forEach((p,idx)=>p.classList.toggle('active',idx===i));
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(()=>showToast('Copied: '+text));
+}
+
+function copyCard(i, type) {
+  if (!generatedData) return;
+  const day = generatedData.days[i];
+  let text = '';
+  if (type==='caption') text=(day.caption||'')+'\n\n'+(day.hashtags||[]).map(h=>h.startsWith('#')?h:'#'+h).join(' ');
+  else if (type==='hashtags') text=(day.hashtags||[]).map(h=>h.startsWith('#')?h:'#'+h).join(' ');
+  else { const s=day.script||{}; text=`${day.day} — ${day.postType}\n\nHOOK: ${s.hook}\nSTORY: ${s.story}\nVALUE: ${s.value}\nCTA: ${s.cta}\n\nON-SCREEN: ${s.onScreen}\nB-ROLL: ${s.broll}`; }
+  navigator.clipboard.writeText(text).then(()=>showToast('Copied to clipboard ✓'));
+}
+
+function copyAll() {
+  if (!generatedData) return;
+  let text = `WEEKLY CONTENT PLAN — ${generatedData.shopName}\nTheme: ${generatedData.weekTheme}\n\n`;
+  (generatedData.days||[]).forEach(day=>{
+    const s=day.script||{};
+    text+=`═══ ${day.day} — ${day.postType} ═══\n\nHOOK: ${s.hook}\nSTORY: ${s.story}\nVALUE: ${s.value}\nCTA: ${s.cta}\n\nCAPTION:\n${day.caption}\n\nHASHTAGS: ${(day.hashtags||[]).map(h=>h.startsWith('#')?h:'#'+h).join(' ')}\nBEST TIME: ${day.postingTime}\n\n`;
+  });
+  navigator.clipboard.writeText(text).then(()=>showToast('Full week copied ✓'));
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
