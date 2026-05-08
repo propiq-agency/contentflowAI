@@ -624,9 +624,10 @@ Make captions and scripts in ${language}. Tone: ${tone}. Hashtags without # symb
     clearInterval(stepTimer);
     setProgress(100, 'Your content plan is ready! ✦', 5);
 
-    const raw = data.candidates[0].content.parts.map(p=>p.text||'').join('');
-    const clean = raw.replace(/```json|```/g,'').trim();
-    const parsed = JSON.parse(clean);
+    
+const raw = data.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('') || '';
+   const clean = raw.replace(/```json|```/g,'').trim();
+const parsed = JSON.parse(clean);
     generatedData = parsed;
 
     setTimeout(()=>{
